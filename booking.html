@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Бронирование | Праздник в каждый дом</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-content">
+        <h1>Подтверждение бронирования</h1>
+        <nav class="nav">
+            <a href="index.html">Главная</a>
+            <a href="search.html">Результаты поиска</a>
+        </nav>
+    </div>
+</header>
+
+<main class="booking-page">
+    <div class="container">
+        <h2>Бронирование на мероприятие</h2>
+        <p><strong id="event-place"></strong></p>
+        <p><strong>Дата мероприятия:</strong> <span id="event-date">20.06.2025</span></p>
+        <p><strong>Вы выбрали:</strong> <span id="selected-zone">—</span></p>
+
+        <table class="price-table">
+            <tr>
+                <th>Услуга</th>
+                <th>Стоимость</th>
+                <th>Добавить</th>
+            </tr>
+            <tr>
+                <td id="base-zone-name">—</td>
+                <td id="base-price-text">—</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>Добавить аниматора</td>
+                <td>+2000 руб.</td>
+                <td><input type="checkbox" id="animator" data-price="2000"></td>
+            </tr>
+            <tr>
+                <td>Предложить свой сюжет</td>
+                <td>+4000 руб.</td>
+                <td><input type="checkbox" id="custom_plot" data-price="4000"></td>
+            </tr>
+            <tr>
+                <td>Пригласить ведущего</td>
+                <td>+2000 руб.</td>
+                <td><input type="checkbox" id="host" data-price="2000"></td>
+            </tr>
+            <tr>
+                <td>Что-то обговорить лично</td>
+                <td>по согласованию</td>
+                <td><input type="checkbox" id="discuss" disabled></td>
+            </tr>
+        </table>
+
+        <div class="total-cost">
+            <strong>Итого к оплате:</strong> <span id="total-price">0</span> руб.
+        </div>
+
+        <div class="booking-form">
+            <h3>Введите данные для бронирования:</h3>
+            <form id="booking-form" action="thank-you.html" method="POST">
+                <input type="hidden" name="base_price" id="form-base-price" value="0">
+                <input type="hidden" name="selected_zone" id="form-selected-zone" value="">
+                <input type="hidden" name="event_place" id="form-event-place" value="">
+                <input type="hidden" name="event_date" id="form-event-date" value="">
+
+                <label for="name">Фамилия и Имя:</label>
+                <input type="text" id="name" name="name" required placeholder="Введите ваше имя">
+
+                <label for="phone">Телефон:</label>
+                <input type="tel" id="phone" name="phone" required placeholder="+7(999)000-00-00" pattern="\+7[0-9]{10}">
+
+                <label for="email">Электронная почта:</label>
+                <input type="email" id="email" name="email" required placeholder="Введите вашу почту">
+
+                <label for="comments">Дополнительные комментарии:</label>
+                <textarea id="comments" name="comments" rows="4" placeholder="Введите дополнительные пожелания"></textarea>
+
+                <button type="submit">Подтвердить бронирование</button>
+            </form>
+        </div>
+
+        <a href="seat.html" class="back-btn">Назад к выбору зоны</a>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <p>Телефон: 8 (800) 111-20-20</p>
+        <nav class="footer-nav">
+            <a href="/return">Возврат</a>
+            <a href="/feedback">Обратная связь</a>
+        </nav>
+    </div>
+</footer>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedZone = urlParams.get('zone') || 'Не выбрана';
+    const basePrice = parseInt(urlParams.get('price')) || 0;
+    const eventPlace = urlParams.get('place') || 'Не выбрано';
+    const eventDate = urlParams.get('date') || '20.06.2025';
+
+    document.getElementById('selected-zone').textContent = selectedZone;
+    document.getElementById('base-zone-name').textContent = selectedZone;
+    document.getElementById('base-price-text').textContent = basePrice + ' руб.';
+    document.getElementById('total-price').textContent = basePrice;
+    document.getElementById('event-place').textContent = eventPlace;
+    document.getElementById('event-date').textContent = eventDate;
+
+    document.getElementById('form-base-price').value = basePrice;
+    document.getElementById('form-selected-zone').value = selectedZone;
+    document.getElementById('form-event-place').value = eventPlace;
+    document.getElementById('form-event-date').value = eventDate;
+
+    const checkboxes = document.querySelectorAll('input[type="checkbox"][data-price]');
+    const totalPriceSpan = document.getElementById('total-price');
+
+    function updateTotalPrice() {
+        let total = basePrice;
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                total += parseInt(checkbox.dataset.price);
+            }
+        });
+        totalPriceSpan.textContent = total;
+    }
+
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateTotalPrice);
+    });
+
+    updateTotalPrice();
+
+    document.getElementById('booking-form').addEventListener('submit', (e) => {
+        const phone = document.getElementById('phone').value;
+        if (!/\+7[0-9]{10}/.test(phone)) {
+            e.preventDefault();
+            alert('Пожалуйста, введите номер телефона в формате +7XXXXXXXXXX');
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Спасибо за бронирование | Праздник в каждый дом</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-content">
+    <h1>Спасибо за бронирование!</h1>
+    <nav class="nav">
+      <a href="index.html">Главная</a>
+      <a href="search.html">Поиск</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <h2>Ваше бронирование подтверждено</h2>
+    <p>Мы свяжемся с вами в ближайшее время для подтверждения деталей.</p>
+    <p><strong>Место:</strong> <span id="event-place"></span></p>
+    <p><strong>Зона:</strong> <span id="selected-zone"></span></p>
+    <p><strong>Дата:</strong> <span id="event-date"></span></p>
+    <p><strong>Итого:</strong> <span id="total-price"></span> руб.</p>
+    <a href="index.html" class="btn">Вернуться на главную</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Телефон: 8 (800) 111-20-20</p>
+    <nav class="footer-nav">
+      <a href="/return">Возврат</a>
+      <a href="/feedback">Обратная связь</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const selectedZone = urlParams.get('selected_zone') || 'Не выбрана';
+  const basePrice = parseInt(urlParams.get('base_price')) || 0;
+  const eventPlace = urlParams.get('event_place') || 'Не выбрано';
+  const eventDate = urlParams.get('event_date') || '20.06.2025';
+
+  document.getElementById('event-place').textContent = eventPlace;
+  document.getElementById('selected-zone').textContent = selectedZone;
+  document.getElementById('event-date').textContent = eventDate;
+  document.getElementById('total-price').textContent = basePrice;
+</script>
+</body>
+</html>

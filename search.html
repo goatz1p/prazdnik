@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Результаты поиска | Праздник в каждый дом</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-content">
+        <h1>Результаты поиска</h1>
+        <nav class="nav">
+            <a href="index.html">Главная</a>
+            <a href="booking.html">Бронирование</a>
+        </nav>
+    </div>
+</header>
+
+<main class="search-results">
+    <div class="container">
+        <h2>Доступные локации в <span id="region"></span></h2>
+
+        <div class="location-card">
+            <h3>Центральный парк культуры и отдыха</h3>
+            <p><strong>Адрес:</strong> ул. Комсомольская, д.4, Волгоград</p>
+            <p><strong>Дата мероприятия:</strong> <span id="date"></span></p>
+            <p><strong>Свободных зон:</strong> 4</p>
+            <a href="seat.html?place=Центральный парк культуры и отдыха" class="btn">Выбрать зону</a>
+        </div>
+
+        <div class="location-card">
+            <h3>Парк Победы</h3>
+            <p><strong>Адрес:</strong> пр-т Университетский, д.105, Волгоград</p>
+            <p><strong>Дата мероприятия:</strong> <span id="date"></span></p>
+            <p><strong>Свободных зон:</strong> 2</p>
+            <a href="seat.html?place=Парк Победы" class="btn">Выбрать зону</a>
+        </div>
+
+        <div class="location-card">
+            <h3>Парк имени Гагарина</h3>
+            <p><strong>Адрес:</strong> ул. Героев Сталинграда, д.1, Волгоград</p>
+            <p><strong>Дата мероприятия:</strong> <span id="date"></span></p>
+            <p><strong>Свободных зон:</strong> 3</p>
+            <a href="seat.html?place=Парк имени Гагарина" class="btn">Выбрать зону</a>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <p>Телефон: 8 (800) 111-20-20</p>
+        <nav class="footer-nav">
+            <a href="/return">Возврат</a>
+            <a href="/feedback">Обратная связь</a>
+        </nav>
+    </div>
+</footer>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const region = urlParams.get('region') || 'Волгоград';
+    const date = urlParams.get('date') || '20.06.2025';
+    document.getElementById('region').textContent = region;
+    document.querySelectorAll('#date').forEach(el => el.textContent = date);
+</script>
+</body>
+</html>

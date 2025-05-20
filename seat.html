@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Выбор зоны | Праздник в каждый дом</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-content">
+        <h1>Выбор зоны</h1>
+        <nav class="nav">
+            <a href="index.html">Главная</a>
+            <a href="search.html">Результаты поиска</a>
+        </nav>
+    </div>
+</header>
+
+<main class="seat-selection">
+    <div class="container">
+        <h2 id="place">Центральный парк культуры и отдыха</h2>
+        <p><strong>Дата мероприятия:</strong> <span id="date">20.06.2025</span></p>
+        <p><strong>Свободные зоны:</strong> 4</p>
+
+        <h3>Выберите зону для мероприятия:</h3>
+
+        <form id="zone-form">
+            <table class="zone-table">
+                <tr>
+                    <td>
+                        <label for="zone1">Супер-герои</label>
+                        <p>Тематическое мероприятие<br>2 бесплатных аниматора на 1,5 часа<br>Детское и взрослое меню<br>Занимательный сюжет</p>
+                        <input type="radio" id="zone1" name="zone" value="Супер-герои" data-price="7000" required>
+                        <p>Стоимость: 7000 руб.</p>
+                    </td>
+                    <td>
+                        <label for="zone2">Пиратская вечеринка</label>
+                        <p>Тематическое мероприятие<br>2 бесплатных аниматора на 2 часа<br>Детское и взрослое меню<br>Занимательный сюжет<br>Фотосессия с героями<br>Шоу мыльных пузырей</p>
+                        <input type="radio" id="zone2" name="zone" value="Пиратская вечеринка" data-price="10000" required>
+                        <p>Стоимость: 10000 руб.</p>
+                    </td>
+                    <td>
+                        <label for="zone3">Вечеринка 'Wednesday'</label>
+                        <p>Тематическое мероприятие<br>1 бесплатный аниматор на 3 часа<br>Детское и взрослое меню<br>Занимательный сюжет<br>Фотосессия с героями<br>Мастер-классы<br>Фокусы</p>
+                        <input type="radio" id="zone3" name="zone" value="Вечеринка 'Wednesday'" data-price="13000" required>
+                        <p>Стоимость: 13000 руб.</p>
+                    </td>
+                    <td>
+                        <label for="zone4">Вечеринка 'Minecraft'</label>
+                        <p>Тематическое мероприятие<br>2 бесплатных аниматора на 2 часа<br>Детское и взрослое меню<br>Занимательный сюжет<br>Фотосессия с героями<br>Мастер-классы<br>Шоу мыльных пузырей<br>Подарки для гостей</p>
+                        <input type="radio" id="zone4" name="zone" value="Вечеринка 'Minecraft'" data-price="16000" required>
+                        <p>Стоимость: 16000 руб.</p>
+                    </td>
+                </tr>
+            </table>
+            <button type="submit" class="btn">Перейти к бронированию</button>
+        </form>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <p>Телефон: 8 (800) 111-20-20</p>
+        <nav class="footer-nav">
+            <a href="/return">Возврат</a>
+            <a href="/feedback">Обратная связь</a>
+        </nav>
+    </div>
+</footer>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const place = urlParams.get('place') || 'Центральный парк культуры и отдыха';
+    const date = urlParams.get('date') || '20.06.2025';
+    document.getElementById('place').textContent = place;
+    document.getElementById('date').textContent = date;
+    document.getElementById('zone-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const selectedZone = document.querySelector('input[name="zone"]:checked');
+        if (selectedZone) {
+            const zoneName = selectedZone.value;
+            const price = selectedZone.dataset.price;
+            window.location.href = `booking.html?zone=${encodeURIComponent(zoneName)}&price=${price}&place=${encodeURIComponent(place)}&date=${encodeURIComponent(date)}`;
+        } else {
+            alert('Пожалуйста, выберите зону.');
+        }
+    });
+</script>
+</body>
+</html>

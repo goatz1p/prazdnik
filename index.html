@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Праздник в каждый дом</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-content">
+    <a href="index.html">
+      <img src="img/logo.png" alt="Логотип Праздник в каждый дом" class="logo">
+    </a>
+    <nav class="nav">
+      <a href="#promotions">Акции</a>
+      <a href="search.html">Поиск</a>
+      <a href="#booking-management">Управление бронированием</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <h1>Подарим волшебство для Ваших детей</h1>
+      <p>Организация ярких и запоминающихся праздников для всей семьи</p>
+      <a href="#search" class="btn">Забронировать сейчас</a>
+    </div>
+  </section>
+
+  <section class="how-it-works">
+    <div class="container">
+      <h2>Как это работает?</h2>
+      <ol class="steps">
+        <li>Выберите дату праздника и регион</li>
+        <li>Выберите локацию и зону</li>
+        <li>Добавьте дополнительные услуги</li>
+        <li>Оформите заказ</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="container">
+      <h2>О компании</h2>
+      <p>Наша цель — сделать праздничные дни незабываемыми для детей и родителей.</p>
+      <blockquote>"Мы дарим волшебство для ваших детей!"</blockquote>
+      <h3>Что говорят наши клиенты</h3>
+      <div class="reviews">
+        <div class="review-card">
+          <div class="review-header">
+            <img src="img/mar.png" alt="Аватар Мария" class="review-avatar">
+            <div>
+              <h4>Мария Иванова</h4>
+              <div class="rating">★★★★★</div>
+            </div>
+          </div>
+          <p>"Это был лучший праздник для моих детей! Аниматоры были невероятные, а организация на высшем уровне. Спасибо за волшебство!"</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <img src="img/pavel.png" alt="Аватар Павел" class="review-avatar">
+            <div>
+              <h4>Павел Петров</h4>
+              <div class="rating">★★★★☆</div>
+            </div>
+          </div>
+          <p>"Пиратская вечеринка стала хитом для сына и его друзей. Шоу мыльных пузырей — просто восторг! Рекомендую всем!"</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <img src="img/elena.png" alt="Аватар Елена" class="review-avatar">
+            <div>
+              <h4>Елена Смирнова</h4>
+              <div class="rating">★★★★★</div>
+            </div>
+          </div>
+          <p>"Мы выбрали тематическую зону Minecraft и дети были в восторге! Всё продумано до мелочей, от еды до подарков. Благодарю за суперские эмоции детей и взрослых!"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="search-block" id="search">
+    <h2>Найдите подходящую локацию</h2>
+    <form action="search.html" method="GET" class="search-form-table">
+      <div class="form-row">
+        <label for="region">Регион:</label>
+        <input type="text" id="region" name="region" placeholder="Например, Волгоград" required>
+      </div>
+      <div class="form-row">
+        <label for="date">Дата:</label>
+        <input type="date" id="date" name="date" required>
+      </div>
+      <div class="form-row">
+        <label for="participants">Участники:</label>
+        <input type="number" id="participants" name="participants" min="1" max="50" placeholder="до 50" required>
+      </div>
+      <div class="form-row full-width">
+        <button type="submit" class="btn">Поиск</button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>8 (800) 111-20-20</p>
+    <nav class="footer-nav">
+      <a href="/return">Возврат</a>
+      <a href="/feedback">Обратная связь</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
